@@ -34,6 +34,7 @@ BuildRequires: libgtk+-devel >= 1.2.8
 BuildRequires: libgtk+2-devel
 BuildRequires: libjpeg-devel
 BuildRequires: liblcms-devel
+BuildRequires: libmesaglu-devel
 BuildRequires: libpng-devel
 BuildRequires: libtiff-devel
 BuildRequires: libgimp-devel
