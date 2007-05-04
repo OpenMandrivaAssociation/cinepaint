@@ -1,29 +1,27 @@
 %define major 	  0
 %define	libname   %mklibname cinepaint %{major}
 %define minor 	  0
-%define revision  21
+%define revision  22
 
 %define ver	%{major}.%{revision}
-%define rel	%mkrel 2
-%define subver	2
+%define rel	%mkrel 1
+%define subver 0
 
 %define use_gutenprint	0
 %{?_with_print: %global use_gutenprint 1}
 %{?_without_print: %global use_gutenprint 0}
 
-Summary: A tool for manipulating high-colordepth images
+Summary:       A tool for manipulating high-colordepth images
 Name:          cinepaint
 Version:       %ver
 Release:       %rel
 License:       GPL
-Group:	       Graphics
+Group:         Graphics
 URL:           http://www.cinepaint.org
-Source0:       %{name}-%{version}-%{subver}.tar.bz2
+Source0:       http://downloads.sourceforge.net/cinepaint/cinepaint-%{version}-%{subver}.tar.gz
 Source1:       icons-%{name}.tar.bz2
-Patch1:        cinepaint-0.21-app_procs.patch
-Patch2:        cinepaint-0.21-openexr.patch
-Patch3:        cinepaint-0.21-gutenprint.patch
-Patch4:	       cinepaint-0.21-python.patch
+Patch2:        cinepaint-0.22-openexr.patch
+Patch4:        cinepaint-0.21-python.patch
 Patch5:        cinepaint-0.21-python64.patch
 BuildRoot:     %{_tmppath}/%{name}-%{version}
 BuildRequires: bison
@@ -32,6 +30,7 @@ BuildRequires: flex
 BuildRequires: fltk-devel
 BuildRequires: python-devel
 BuildRequires: libgtk+-devel >= 1.2.8
+BuildRequires: libgtk+2-devel
 BuildRequires: libjpeg-devel
 BuildRequires: liblcms-devel
 BuildRequires: libpng-devel
@@ -87,9 +86,7 @@ extensions.
 
 %prep
 %setup -q -n %{name}-%{version}-%{subver}
-%patch1 -p1 -b .app_procs
 %patch2 -p1 -b .openexr
-%patch3 -p1 -b .gutenprint
 %patch4 -p1 -b .python
 %ifarch x86_64
 %patch5 -p1 -b .python64
@@ -100,10 +97,11 @@ chmod +x ./mkinstalldirs
 %build
 %configure2_5x \
 %if %use_gutenprint
-	--enable-print
+	--enable-print \
 %else
-	--disable-print
+	--disable-print \
 %endif
+	--enable-gtk2
 %make
 
 %install
@@ -160,9 +158,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/cinepaint.1*
 %{_libdir}/cinepaint/%{ver}-%{subver}/*
 %{_datadir}/cinepaint/%{ver}-%{subver}/*
-%{py_puresitedir}/*
-%{py_platsitedir}/*
 %{_menudir}/cinepaint
+%{_datadir}/fonts/FreeSans.ttf
 %{_datadir}/pixmaps/*.png
 %if %{mdkversion} >= 200610
 %{_datadir}/applications/*.desktop
@@ -185,5 +182,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.a
 %{_libdir}/pkgconfig/*
 %attr(0644,root,root) %{_libdir}/lib*.la
-
-
