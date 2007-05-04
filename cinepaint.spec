@@ -37,6 +37,7 @@ BuildRequires: libpng-devel
 BuildRequires: libtiff-devel
 BuildRequires: libgimp-devel
 BuildRequires: libxmu-devel
+BuildRequires: libxpm-devel
 BuildRequires: OpenEXR-devel
 BuildRequires: libOpenEXR-devel
 BuildRequires: gutenprint-devel >= 5.0.0-0.8mdk
@@ -101,7 +102,8 @@ chmod +x ./mkinstalldirs
 %else
 	--disable-print \
 %endif
-	--enable-gtk2
+	--enable-gtk2 \
+	--enable-pygimp
 %make
 
 %install
@@ -167,6 +169,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*.png
 %{_liconsdir}/*.png
 %{_miconsdir}/*.png
+%{py_puresitedir}/*
+%{py_platsitedir}/*
 
 %files -n %{libname}
 %defattr(-,root,root,755)
