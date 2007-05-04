@@ -26,6 +26,7 @@ Patch5:        cinepaint-0.21-python64.patch
 BuildRoot:     %{_tmppath}/%{name}-%{version}
 BuildRequires: bison
 BuildRequires: desktop-file-utils
+BuildRequires: GL-devel
 BuildRequires: flex
 BuildRequires: fltk-devel
 BuildRequires: python-devel
