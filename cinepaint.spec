@@ -23,7 +23,6 @@ Source1:       icons-%{name}.tar.bz2
 Patch2:        cinepaint-0.22-openexr.patch
 Patch4:        cinepaint-0.21-python.patch
 Patch5:        cinepaint-0.21-python64.patch
-BuildRoot:     %{_tmppath}/%{name}-%{version}
 BuildRequires: bison
 BuildRequires: desktop-file-utils
 BuildRequires: GL-devel
