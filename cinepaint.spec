@@ -112,18 +112,6 @@ chmod +x ./mkinstalldirs
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat > $RPM_BUILD_ROOT%{_menudir}/cinepaint <<EOF
-?package(cinepaint): command="%{_bindir}/cinepaint" \
-icon="cinepaint.png" \
-section="Multimedia/Graphics" \
-title="CinePaint" \
-longtitle="A tool for manipulating images" \
-%if %{mdkversion} >= 200610
-xdg=true \
-%endif
-needs="x11"
-EOF
 
 mkdir -p $RPM_BUILD_ROOT%{_iconsdir}
 tar -xjf %{SOURCE1} -C $RPM_BUILD_ROOT%{_iconsdir}
@@ -162,7 +150,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/cinepaint.1*
 %{_libdir}/cinepaint/%{ver}-%{subver}/*
 %{_datadir}/cinepaint/%{ver}-%{subver}/*
-%{_menudir}/cinepaint
 %{_datadir}/fonts/FreeSans.ttf
 %{_datadir}/pixmaps/*.png
 %if %{mdkversion} >= 200610
