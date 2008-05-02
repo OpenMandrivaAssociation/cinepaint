@@ -24,6 +24,7 @@ Source1:       icons-%{name}.tar.bz2
 Patch2:        cinepaint-0.22-openexr.patch
 Patch4:        cinepaint-0.21-python.patch
 Patch5:        cinepaint-0.21-python64.patch
+Patch6: 	cinepaint-0.22-0-icc_helfer_fltk.patch
 BuildRoot:     %{_tmppath}/%{name}-%{version}
 BuildRequires: bison
 BuildRequires: desktop-file-utils
@@ -96,6 +97,7 @@ extensions.
 %ifarch x86_64
 %patch5 -p1 -b .python64
 %endif
+%patch6 -p1
 aclocal && autoconf && automake
 chmod +x ./mkinstalldirs
 
