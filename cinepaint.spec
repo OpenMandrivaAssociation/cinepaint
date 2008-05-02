@@ -1,11 +1,12 @@
 %define major 	  0
 %define	libname   %mklibname cinepaint %{major}
+%define develname %mklibname -d cinepaint
 %define minor 	  0
 %define revision  22
 
 %define ver	%{major}.%{revision}
-%define rel	%mkrel 1
-%define subver 0
+%define rel	%mkrel 2
+%define subver 1
 
 %define use_gutenprint	0
 %{?_with_print: %global use_gutenprint 1}
@@ -76,14 +77,15 @@ Provides:	libcinepaint = %version-%release
 %description -n %{libname}
 This package contains shared libraries used by CinePaint.
 
-%package -n %{libname}-devel
+%package -n %{develname}
 Summary:	CinePaint plugins and extension development kit
 Group:		Development/C
 Requires:	%{libname} = %version
 Provides:	cinepaint-devel
 Provides:	libcinepaint-devel = %version-%release
+Obsoletes:	%mklibname cinepaint 0 -d
 
-%description -n %{libname}-devel
+%description -n %{develname}
 Static libraries and header files for writing CinePaint plugins and
 extensions.
 
@@ -116,14 +118,11 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{_iconsdir}
 tar -xjf %{SOURCE1} -C $RPM_BUILD_ROOT%{_iconsdir}
 
-%if %{mdkversion} >= 200610
 desktop-file-install --vendor="" \
   --remove-category="Application" \
-  --add-category="X-MandrivaLinux-Multimedia-Graphics" \
   --add-category="Graphics" \
   --add-category="RasterGraphics" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
-%endif
 
 %find_lang %{name} --all-name
 
@@ -152,9 +151,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/cinepaint/%{ver}-%{subver}/*
 %{_datadir}/fonts/FreeSans.ttf
 %{_datadir}/pixmaps/*.png
-%if %{mdkversion} >= 200610
 %{_datadir}/applications/*.desktop
-%endif
 %{_iconsdir}/*.png
 %{_liconsdir}/*.png
 %{_miconsdir}/*.png
@@ -165,7 +162,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,755)
 %{_libdir}/libcinepaint*.so.*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root,0755)
 %{_bindir}/cinepainttool
 %{_datadir}/aclocal/cinepaint.m4
