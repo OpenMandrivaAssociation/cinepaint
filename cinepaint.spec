@@ -5,7 +5,7 @@
 %define revision  22
 
 %define ver	%{major}.%{revision}
-%define rel	%mkrel 3
+%define rel	%mkrel 4
 %define subver 1
 
 %define use_gutenprint	0
