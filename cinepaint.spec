@@ -15,7 +15,7 @@
 Summary:	A tool for manipulating high-colordepth images
 Name:		cinepaint
 Version:	%{ver}
-Release:	%mkrel 6
+Release:	%mkrel 7
 License:	GPL
 Group:		Graphics
 URL:		http://www.cinepaint.org
