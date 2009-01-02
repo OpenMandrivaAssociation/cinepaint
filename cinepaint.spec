@@ -32,6 +32,8 @@ Patch11:	cinepaint-0.22.1-rpath.patch
 Patch12:	cinepaint-0.22-0-pc_req.patch
 Patch13:	cinepaint-0.22-0-libdir.patch
 Patch14:	cinepaint-0.22-1-linkage_fix.diff
+Patch15:	cinepaint-0.22.1-fix-str-fmt.patch
+Patch16:	cinepaint-0.22.1-new-fltk.patch
 BuildRequires:	bison
 BuildRequires:	desktop-file-utils
 BuildRequires:	flex
@@ -114,6 +116,8 @@ extensions.
 %patch12 -p1 -b .req
 %patch13 -p1 -b .libdir
 %patch14 -p1 -b .linkage_fix
+%patch15 -p0 -b .str
+%patch16 -p0 -b .fltk
 
 %build
 libtoolize --copy --force
