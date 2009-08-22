@@ -15,7 +15,7 @@
 Summary:	A tool for manipulating high-colordepth images
 Name:		cinepaint
 Version:	%{ver}
-Release:	%mkrel 7
+Release:	%mkrel 8
 License:	GPL
 Group:		Graphics
 URL:		http://www.cinepaint.org
@@ -34,6 +34,7 @@ Patch13:	cinepaint-0.22-0-libdir.patch
 Patch14:	cinepaint-0.22-1-linkage_fix.diff
 Patch15:	cinepaint-0.22.1-fix-str-fmt.patch
 Patch16:	cinepaint-0.22.1-new-fltk.patch
+Patch17:	cinepaint-0.22-gcc44.patch
 BuildRequires:	bison
 BuildRequires:	desktop-file-utils
 BuildRequires:	flex
@@ -118,6 +119,7 @@ extensions.
 %patch14 -p1 -b .linkage_fix
 %patch15 -p0 -b .str
 %patch16 -p0 -b .fltk
+%patch17 -p1 -b .gcc44
 
 %build
 libtoolize --copy --force
