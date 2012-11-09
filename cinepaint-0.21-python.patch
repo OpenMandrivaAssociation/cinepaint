@@ -1,0 +1,11 @@
+--- cinepaint-0.21-2/configure.in.python	2007-02-18 16:19:52.000000000 -0500
++++ cinepaint-0.21-2/configure.in	2007-02-18 16:20:35.000000000 -0500
+@@ -478,7 +478,7 @@
+ AC_ARG_WITH(python,[  --with-python=path       Set location of Python executable],[ PYBIN="$withval"], [PYBIN=])
+ dnl First figure out the name of the Python executable
+ if test -z "$PYBIN"; then
+-AC_CHECK_PROGS(PYTHON, python python2.4 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5 python1.4 python)
++AC_CHECK_PROGS(PYTHON, python python2.5 python2.4 python2.3 python2.2 python2.1 python2.0 python1.6 python1.5 python1.4 python)
+ else
+ PYTHON="$PYBIN"
+ fi

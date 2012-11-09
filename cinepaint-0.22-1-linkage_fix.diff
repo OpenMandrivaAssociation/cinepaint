@@ -1,0 +1,179 @@
+diff -Naur cinepaint-0.22-1/lib/fl_i18n/Makefile.am cinepaint-0.22-1.oden/lib/fl_i18n/Makefile.am
+--- cinepaint-0.22-1/lib/fl_i18n/Makefile.am	2007-03-30 05:45:22.000000000 -0400
++++ cinepaint-0.22-1.oden/lib/fl_i18n/Makefile.am	2008-11-12 12:47:22.000000000 -0500
+@@ -19,7 +19,7 @@
+ library_includedir=${pkgincludedir}
+ #library_include_HEADERS = fl_i18n.H
+ 
+-libcinepaint_fl_i18n_la_LDFLAGS = -version-info $(MAJOR_VERSION):$(MINOR_VERSION):0
++libcinepaint_fl_i18n_la_LDFLAGS = -version-info $(MAJOR_VERSION):$(MINOR_VERSION):0 -lfltk -lpthread
+ 
+ 
+ INCLUDES = $(USE_THREADS) $(FLTK_CFLAGS) $(X_CFLAGS) \
+diff -Naur cinepaint-0.22-1/lib/Makefile.am cinepaint-0.22-1.oden/lib/Makefile.am
+--- cinepaint-0.22-1/lib/Makefile.am	2007-05-10 02:59:09.000000000 -0400
++++ cinepaint-0.22-1.oden/lib/Makefile.am	2008-11-12 12:46:51.000000000 -0500
+@@ -93,7 +93,7 @@
+ 
+ ## libcinepaint_la_LDFLAGS = -version-info $(MAJOR_VERSION):$(MINOR_VERSION):$(MICRO_VERSION)
+ 
+-libcinepaint_la_LDFLAGS = -version-info $(MAJOR_VERSION):$(MINOR_VERSION):0
++libcinepaint_la_LDFLAGS = -version-info $(MAJOR_VERSION):$(MINOR_VERSION):0 $(GTK_LIBS) -lm
+ 
+ 
+ INCLUDES = $(X_CFLAGS) -I$(top_srcdir)	-I$(includedir)	-I../wire -I../fl_i18n
+diff -Naur cinepaint-0.22-1/plug-ins/icc_examin/icc_examin/makefile.in cinepaint-0.22-1.oden/plug-ins/icc_examin/icc_examin/makefile.in
+--- cinepaint-0.22-1/plug-ins/icc_examin/icc_examin/makefile.in	2008-11-12 12:45:33.000000000 -0500
++++ cinepaint-0.22-1.oden/plug-ins/icc_examin/icc_examin/makefile.in	2008-11-12 12:45:47.000000000 -0500
+@@ -36,7 +36,7 @@
+ 
+ LDLIBS = $(LDFLAGS) -L$(libdir) -L./ $(LIBFL_I18N) $(FLTK_LIBS) $(FLU_LIBS) \
+ 	$(X11_LIBS) -llcms -L/lib $(OYRANOS_LIBS) $(LCMS_LIBS) \
+-	$(FTGL_LIBS) $(I18N_LIB) $(DBG_LIBS) $(LIBNAME) $(CWLIB)
++	$(FTGL_LIBS) $(I18N_LIB) $(DBG_LIBS) $(LIBNAME) $(CWLIB) -lGLU -L../../../libhalf/.libs/ -lcinepaintHalf
+ 
+ CPP_HEADERS = \
+ 	agviewer.h \
+diff -Naur cinepaint-0.22-1/plug-ins/blur/Makefile.am cinepaint-0.22-1.oden/plug-ins/blur/Makefile.am
+--- cinepaint-0.22-1/plug-ins/blur/Makefile.am	2004-02-09 18:05:23.000000000 -0500
++++ cinepaint-0.22-1.oden/plug-ins/blur/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -16,6 +16,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la	\
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS)				\
+ 	-lc
+ 
+diff -Naur cinepaint-0.22-1/plug-ins/edge/Makefile.am cinepaint-0.22-1.oden/plug-ins/edge/Makefile.am
+--- cinepaint-0.22-1/plug-ins/edge/Makefile.am	2004-02-09 19:02:46.000000000 -0500
++++ cinepaint-0.22-1.oden/plug-ins/edge/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -14,6 +14,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la	\
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS)				\
+ 					\
+ 	-lc
+diff -Naur cinepaint-0.22-1/plug-ins/gbr/Makefile.am cinepaint-0.22-1.oden/plug-ins/gbr/Makefile.am
+--- cinepaint-0.22-1/plug-ins/gbr/Makefile.am	2004-02-09 19:02:52.000000000 -0500
++++ cinepaint-0.22-1.oden/plug-ins/gbr/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -14,6 +14,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la	\
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS)				\
+ 					\
+ 	-lc
+diff -Naur cinepaint-0.22-1/plug-ins/icc_examin/Makefile.am cinepaint-0.22-1.oden/plug-ins/icc_examin/Makefile.am
+--- cinepaint-0.22-1/plug-ins/icc_examin/Makefile.am	2006-12-05 01:51:59.000000000 -0500
++++ cinepaint-0.22-1.oden/plug-ins/icc_examin/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -20,6 +20,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la \
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS) \
+ 	$(THREAD_LIBS) \
+ 	$(LCMS_LIB)
+diff -Naur cinepaint-0.22-1/plug-ins/iol/Makefile.am cinepaint-0.22-1.oden/plug-ins/iol/Makefile.am
+--- cinepaint-0.22-1/plug-ins/iol/Makefile.am	2006-09-24 02:39:46.000000000 -0400
++++ cinepaint-0.22-1.oden/plug-ins/iol/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -34,6 +34,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la	\
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS)				\
+ 	-lc					\
+ 	-lm					\
+diff -Naur cinepaint-0.22-1/plug-ins/jpeg/Makefile.am cinepaint-0.22-1.oden/plug-ins/jpeg/Makefile.am
+--- cinepaint-0.22-1/plug-ins/jpeg/Makefile.am	2004-11-23 04:20:47.000000000 -0500
++++ cinepaint-0.22-1.oden/plug-ins/jpeg/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -16,6 +16,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la	\
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS)				\
+ 	@LCMS_LIB@				\
+ 	@LIBJPEG_LIB@				\
+diff -Naur cinepaint-0.22-1/plug-ins/mblur/Makefile.am cinepaint-0.22-1.oden/plug-ins/mblur/Makefile.am
+--- cinepaint-0.22-1/plug-ins/mblur/Makefile.am	2004-02-09 20:12:12.000000000 -0500
++++ cinepaint-0.22-1.oden/plug-ins/mblur/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -14,6 +14,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la	\
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS)				\
+ 					\
+ 	-lc
+diff -Naur cinepaint-0.22-1/plug-ins/noisify/Makefile.am cinepaint-0.22-1.oden/plug-ins/noisify/Makefile.am
+--- cinepaint-0.22-1/plug-ins/noisify/Makefile.am	2004-02-09 20:12:53.000000000 -0500
++++ cinepaint-0.22-1.oden/plug-ins/noisify/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -14,6 +14,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la	\
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS)				\
+ 	-lc
+ 
+diff -Naur cinepaint-0.22-1/plug-ins/retinex/Makefile.am cinepaint-0.22-1.oden/plug-ins/retinex/Makefile.am
+--- cinepaint-0.22-1/plug-ins/retinex/Makefile.am	2007-05-10 16:55:50.000000000 -0400
++++ cinepaint-0.22-1.oden/plug-ins/retinex/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -17,6 +17,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la \
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS) \
+ 	-lc
+ 
+diff -Naur cinepaint-0.22-1/plug-ins/sharpen/Makefile.am cinepaint-0.22-1.oden/plug-ins/sharpen/Makefile.am
+--- cinepaint-0.22-1/plug-ins/sharpen/Makefile.am	2004-02-09 19:43:07.000000000 -0500
++++ cinepaint-0.22-1.oden/plug-ins/sharpen/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -14,6 +14,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la	\
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS)				\
+ 	-lc
+ 
+diff -Naur cinepaint-0.22-1/plug-ins/snoise/Makefile.am cinepaint-0.22-1.oden/plug-ins/snoise/Makefile.am
+--- cinepaint-0.22-1/plug-ins/snoise/Makefile.am	2004-02-09 19:43:07.000000000 -0500
++++ cinepaint-0.22-1.oden/plug-ins/snoise/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -13,6 +13,7 @@
+ 	-I$(includedir)
+ 
+ LDADD = $(top_builddir)/lib/libcinepaint.la	\
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS)				\
+ 					\
+ 	-lc
+diff -Naur cinepaint-0.22-1/plug-ins/sobel/Makefile.am cinepaint-0.22-1.oden/plug-ins/sobel/Makefile.am
+--- cinepaint-0.22-1/plug-ins/sobel/Makefile.am	2004-02-09 19:43:07.000000000 -0500
++++ cinepaint-0.22-1.oden/plug-ins/sobel/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -14,6 +14,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la	\
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS)				\
+ 					\
+ 	-lc
+diff -Naur cinepaint-0.22-1/plug-ins/tiff/Makefile.am cinepaint-0.22-1.oden/plug-ins/tiff/Makefile.am
+--- cinepaint-0.22-1/plug-ins/tiff/Makefile.am	2006-09-15 09:41:40.000000000 -0400
++++ cinepaint-0.22-1.oden/plug-ins/tiff/Makefile.am	2008-11-12 12:45:47.000000000 -0500
+@@ -22,6 +22,7 @@
+ 
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la	\
++	$(top_builddir)/libhalf/libcinepaintHalf.la \
+ 	$(X_LIBS)				\
+ 	$(OYRANOS_LIBS) \
+ 	@LCMS_LIB@                           \

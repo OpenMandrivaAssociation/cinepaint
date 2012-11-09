@@ -1,0 +1,14 @@
+--- cinepaint-0.22-0/configure.in.lib64	2007-03-30 14:42:18.000000000 +0200
++++ cinepaint-0.22-0/configure.in	2007-05-14 20:30:51.000000000 +0200
+@@ -67,9 +67,9 @@
+ echo PKG_CONFIG_PATH = $PKG_CONFIG_PATH
+ echo ""
+ if test -z "$PKG_CONFIG_PATH"; then 
+-  PKG_CONFIG_PATH="$prefix/lib/pkgconfig:/usr/local/lib/pkgconfig"
++  PKG_CONFIG_PATH="$libdir/pkgconfig"
+ else
+-  PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$prefix/lib/pkgconfig:/usr/local/lib/pkgconfig"
++  PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$libdir/pkgconfig"
+ fi
+ 
+ 

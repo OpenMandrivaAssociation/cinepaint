@@ -1,0 +1,24 @@
+diff -Naur cinepaint-0.22-0.orig/configure.in cinepaint-0.22-0/configure.in
+--- cinepaint-0.22-0.orig/configure.in	2007-03-30 09:42:18.000000000 -0300
++++ cinepaint-0.22-0/configure.in	2007-05-04 11:09:30.000000000 -0300
+@@ -302,7 +302,7 @@
+       openexr_version=`$OPENEXR_CONFIG --modversion`
+       if expr "$openexr_version" \>= 1.0.0 >/dev/null; then
+         AC_MSG_RESULT([checking for OpenEXR... (version $openexr_version) yes])
+-        OPENEXR_LIBS=`$OPENEXR_CONFIG --libs | sed  s/-O.\//`
++        OPENEXR_LIBS="`$OPENEXR_CONFIG --libs | sed  s/-O.\//` -lpthread"
+         OPENEXR_INCLUDES=`$OPENEXR_CONFIG --cflags | sed  s/-O.\//`
+       else
+         dnl second Test for OpenEXR
+diff -Naur cinepaint-0.22-0.orig/plug-ins/openexr/Makefile.am cinepaint-0.22-0/plug-ins/openexr/Makefile.am
+--- cinepaint-0.22-0.orig/plug-ins/openexr/Makefile.am	2006-08-04 05:54:39.000000000 -0300
++++ cinepaint-0.22-0/plug-ins/openexr/Makefile.am	2007-05-04 11:09:00.000000000 -0300
+@@ -26,7 +26,7 @@
+ LDADD = \
+ 	$(top_builddir)/lib/libcinepaint.la \
+ 	$(X_LIBS) \
+-	$(OPENEXR_LIBS) \
++	@OPENEXR_LIBS@ \
+ 	@LCMS_LIB@ \
+ 	-lc
+ 

@@ -1,0 +1,44 @@
+--- lib/fl_i18n/fl_i18n.cxx.fltk	2009-01-02 16:02:52.000000000 +0100
++++ lib/fl_i18n/fl_i18n.cxx	2009-01-02 16:03:29.000000000 +0100
+@@ -383,7 +383,7 @@
+ #endif
+ }
+ 
+-#include <Fl/Fl_File_Chooser.H>
++#include <FL/Fl_File_Chooser.H>
+ void
+ fl_translate_file_chooser( )
+ {
+--- plug-ins/icc_examin/icc_examin/fl_i18n/fl_i18n.cxx.fltk	2009-01-02 16:22:53.000000000 +0100
++++ plug-ins/icc_examin/icc_examin/fl_i18n/fl_i18n.cxx	2009-01-02 16:23:25.000000000 +0100
+@@ -380,7 +380,7 @@
+ #endif
+ }
+ 
+-#include <Fl/Fl_File_Chooser.H>
++#include <FL/Fl_File_Chooser.H>
+ void
+ fl_translate_file_chooser( )
+ {
+--- plug-ins/icc_examin/icc_examin/icc_helfer.h.fltk	2009-01-02 16:13:39.000000000 +0100
++++ plug-ins/icc_examin/icc_examin/icc_helfer.h	2009-01-02 16:14:03.000000000 +0100
+@@ -44,7 +44,7 @@
+ #endif
+ 
+ #if HAVE_FLTK
+-#include <Fl/Fl_Widget.H>
++#include <FL/Fl_Widget.H>
+ // in icc_helfer_fltk.cpp
+ void        dbgFltkEvents  ( int           event);
+ std::string dbgFltkEvent   ( int           event);
+--- plug-ins/icc_examin/icc_examin/icc_helfer_fltk.cpp.fltk	2009-01-02 16:19:56.000000000 +0100
++++ plug-ins/icc_examin/icc_examin/icc_helfer_fltk.cpp	2009-01-02 16:20:14.000000000 +0100
+@@ -38,7 +38,7 @@
+ #include "icc_helfer_fltk.h"
+ #include "icc_helfer.h"
+ #include "icc_icc.h"
+-#include <Fl/Fl.H>
++#include <FL/Fl.H>
+ #if HAVE_X
+ #include <X11/xpm.h>
+ #include <X11/extensions/shape.h>

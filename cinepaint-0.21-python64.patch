@@ -1,0 +1,27 @@
+--- cinepaint-0.21-2/configure.in.64	2007-02-18 16:22:39.000000000 -0500
++++ cinepaint-0.21-2/configure.in	2007-02-18 16:24:31.000000000 -0500
+@@ -502,11 +502,11 @@
+     dnl Set the include directory
+     AC_MSG_CHECKING(for Python header files)
+     if test -r $PYPREFIX/include/$PYVERSION/Python.h; then
+-        PYINCLUDE="-I$PYPREFIX/include/$PYVERSION -I$PYEPREFIX/lib/$PYVERSION/config"
++        PYINCLUDE="-I$PYPREFIX/include/$PYVERSION -I$PYEPREFIX/lib64/$PYVERSION/config"
+     fi
+     if test -z "$PYINCLUDE"; then
+         if test -r $PYPREFIX/include/Py/Python.h; then
+-            PYINCLUDE="-I$PYPREFIX/include/Py -I$PYEPREFIX/lib/python/lib"
++            PYINCLUDE="-I$PYPREFIX/include/Py -I$PYEPREFIX/lib64/python/lib"
+         fi
+     fi
+     AC_MSG_RESULT($PYINCLUDE)
+@@ -515,8 +515,8 @@
+     AC_MSG_CHECKING(for Python library)
+     dirs="$PYVERSION/config $PYVERSION/lib python/lib"
+     for i in $dirs; do
+-        if test -d $PYEPREFIX/lib/$i; then
+-           PYLIB="-L$PYEPREFIX/lib/$i"
++        if test -d $PYEPREFIX/lib64/$i; then
++           PYLIB="-L$PYEPREFIX/lib64/$i"
+            break
+         fi
+     done

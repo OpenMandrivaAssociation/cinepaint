@@ -1,0 +1,11 @@
+--- cinepaint-0.22-0/plug-ins/icc_examin/icc_examin/icc_helfer_fltk.cpp.debug	2007-03-22 06:30:40.000000000 +0900
++++ cinepaint-0.22-0/plug-ins/icc_examin/icc_examin/icc_helfer_fltk.cpp	2007-05-11 18:28:11.000000000 +0900
+@@ -226,7 +226,7 @@
+ 
+   int  awake(void)
+   {
+-    Fl::awake(0);
++    Fl::awake((void *) 0);
+     return 0;
+   }
+   int  leerWait(void) { return 0; }

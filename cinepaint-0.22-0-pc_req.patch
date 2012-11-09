@@ -1,0 +1,23 @@
+--- cinepaint-0.22-0/cinepaint-gtk.pc.in.req	2007-03-21 11:51:11.000000000 +0100
++++ cinepaint-0.22-0/cinepaint-gtk.pc.in	2007-06-18 18:45:19.000000000 +0200
+@@ -1,8 +1,8 @@
+ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+-libdir=${exec_prefix}/lib
++libdir=@libdir@
+ includedir=@includedir@/cinepaint
+-datarootdir=@datarootdir@
++datarootdir=@datadir@
+ programdotdir=@programdotdir@
+ programplugindir=@programplugindir@
+ programdatadir=@programdatadir@
+@@ -11,6 +11,7 @@
+ Name: cinepaint-gtk
+ Description: Cinepaint Plug-In Library Using GTK+
+ Version: @MAJOR_VERSION@.@MINOR_VERSION@
+-Libs: -L${libdir} -lcinepaint @GTK_LIBS@
+-Cflags: -I${includedir} @GTK_CFLAGS@
++Requires: gtk+-2.0
++Libs: -L${libdir} -lcinepaint 
++Cflags: -I${includedir} 
+ 
