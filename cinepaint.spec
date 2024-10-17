@@ -18,7 +18,7 @@ Version:	%{ver}
 Release:	%mkrel 9
 License:	GPL
 Group:		Graphics
-URL:		http://www.cinepaint.org
+URL:		https://www.cinepaint.org
 Source0:	http://downloads.sourceforge.net/cinepaint/cinepaint-%{version}-%{subver}.tar.gz
 Source1:	icons-%{name}.tar.bz2
 Patch2:		cinepaint-0.22-openexr.patch
