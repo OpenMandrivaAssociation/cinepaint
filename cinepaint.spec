@@ -35,6 +35,11 @@ Patch14:	cinepaint-0.22-1-linkage_fix.diff
 Patch15:	cinepaint-0.22.1-fix-str-fmt.patch
 Patch16:	cinepaint-0.22.1-new-fltk.patch
 Patch17:	cinepaint-0.22-gcc44.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	bison
 BuildRequires:	desktop-file-utils
 BuildRequires:	flex
